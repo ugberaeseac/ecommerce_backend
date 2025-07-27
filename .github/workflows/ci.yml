@@ -21,8 +21,6 @@ jobs:
           POSTGRES_DB: ${{ secrets.DB_NAME }}
           POSTGRES_USER: ${{ secrets.DB_USER }}
           POSTGRES_PASSWORD: ${{ secrets.DB_PASS }}
-        ports:
-          - 5432:5432
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -54,6 +52,8 @@ jobs:
 
       - name: wait for PostgreSQL
         run: |
+          echo "sleeping for 10 secs to allow Postgres warm up"
+          sleep 10
           until pg_isready -h $DB_HOST -p $DB_PORT; do
             echo "Waiting for postgres..."
             sleep 1
