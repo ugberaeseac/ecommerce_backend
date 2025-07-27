@@ -34,9 +34,8 @@ jobs:
       DB_NAME: ${{ secrets.DB_NAME }}
       DB_USER: ${{ secrets.DB_USER }}
       DB_PASS: ${{ secrets.DB_PASS }}
-      DB_HOST: localhost
-      DB_PORT: 5432
-      DEBUG: 1
+      DB_HOST: ${{ secrets.DB_HOST }}
+      DB_PORT: ${{ secrets.DB_PORT }}
 
     steps:
       - name: Checkout code
@@ -51,17 +50,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-
-      - name: wait for PostgreSQL
-        run: |
-          echo "sleeping for 10 secs to allow Postgres warm up"
-          sleep 10
-
-      - name: Test DB connection with psql
-        run: |
-          echo "Testing PostgreSQL connection..."
-          sudo apt-get update && sudo apt-get install -y postgresql-client
-          PGPASSWORD=$DB_PASS psql -h $DB_HOST -U $DB_USER -d $DB_NAME -p $DB_PORT -c '\l'
 
       - name: Run migrations
         run: |
