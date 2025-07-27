@@ -54,10 +54,6 @@ jobs:
         run: |
           echo "sleeping for 10 secs to allow Postgres warm up"
           sleep 10
-          until pg_isready -h $DB_HOST -p $DB_PORT; do
-            echo "Waiting for postgres..."
-            sleep 1
-          done
 
       - name: Test DB connection with psql
         run: |
