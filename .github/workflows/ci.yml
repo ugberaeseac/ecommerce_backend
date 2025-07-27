@@ -50,12 +50,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Print DB env variables
-        run: |
-          echo "DB_HOST: $DB_HOST"
-          echo "DB_USER: $DB_USER"
-          echo "DB_NAME: $DB_NAME"
-
       - name: wait for PostgreSQL
         run: |
           echo "sleeping for 10 secs to allow Postgres warm up"
@@ -64,6 +58,12 @@ jobs:
             echo "Waiting for postgres..."
             sleep 1
           done
+
+      - name: Test DB connection with psql
+        run: |
+          echo "Testing PostgreSQL connection..."
+          sudo apt-get update && sudo apt-get install -y postgresql-client
+          PGPASSWORD=$DB_PASS psql -h $DB_HOST -U $DB_USER -d $DB_NAME -p $DB_PORT -c '\l'
 
       - name: Run migrations
         run: |
