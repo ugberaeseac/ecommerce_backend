@@ -1,5 +1,4 @@
 from django.db import models
-
 from core.models import Timestamp
 import uuid
 
