@@ -51,6 +51,6 @@ class Product(Timestamp):
         return self.name
     
     @property
-    def in_stock(self):
+    def in_stock(self) -> bool:
         return self.stock > 0
 
