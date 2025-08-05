@@ -24,15 +24,19 @@ class UserTests(APITestCase):
         self.user_me_url = reverse('user-me')
         self.user_detail_url = lambda uid: reverse('user-detail', kwargs={'user_id': uid})
 
+
     def test_unauthenticated_user_cannot_view_users(self):
         response = self.client.get(self.user_list_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
+    
     def test_only_admin_can_view_user_list(self):
         self.client.force_authenticate(user=self.admin_user)
         response = self.client.get(self.user_list_url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertTrue(any(user['email'] == self.normal_user.email for user in response.data))
+        results = response.data.get('results', [])
+        self.assertIn(self.normal_user.email, [user['email'] for user in results])
+
 
     def test_anyone_can_create_user(self):
         data = {
@@ -51,6 +55,7 @@ class UserTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['email'], self.normal_user.email)
 
+
     def test_admin_can_retrieve_update_delete_user(self):
         self.client.force_authenticate(user=self.admin_user)
         detail_url = self.user_detail_url(self.normal_user.user_id)
@@ -67,6 +72,7 @@ class UserTests(APITestCase):
         # Delete
         response = self.client.delete(detail_url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
 
     def test_non_admin_cannot_access_other_users(self):
         self.client.force_authenticate(user=self.normal_user)

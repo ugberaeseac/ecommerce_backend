@@ -20,6 +20,10 @@ class User(AbstractUser, Timestamp):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
+    
+    class Meta:
+        ordering = ['-created_at']
+
 
     def __str__(self):
         return f'{self.first_name} {self.last_name} - {self.email} - {self.created_at}'
