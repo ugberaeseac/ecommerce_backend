@@ -3,6 +3,9 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser, AllowAny
 from .models import Product, Category
 from .serializers import ProductSerializer, CategorySerializer
 from rest_framework.exceptions import NotFound
+from .filters import ProductFilter
+from rest_framework import filters
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 
@@ -51,6 +54,10 @@ class CategoryProductListAPIView(generics.ListAPIView):
 class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    filterset_class = ProductFilter
+    filter_backends= [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    search_fields = ['name', 'slug', 'description']
+    ordering_fields = ['price']
 
     def get_permissions(self):
         if self.request.method == 'GET':
@@ -58,6 +65,8 @@ class ProductListCreateAPIView(generics.ListCreateAPIView):
         else:
             self.permission_classes = [IsAdminUser]
         return super().get_permissions()
+
+    
 
 
 
