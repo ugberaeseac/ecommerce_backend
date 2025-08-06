@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'apps.users.apps.UsersConfig',
     'apps.products.apps.ProductsConfig',
+    'apps.orders.apps.OrdersConfig',
     'apps.auths.apps.AuthsConfig',
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',

@@ -8,6 +8,12 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = ('product_id', 'name', 'slug', 'description', 'price', 'category', 'stock', 'in_stock')
 
+    def validate_price(self, value):
+        if value <= 0:
+            raise serializers.ValidationError('Price must be greater than 0')
+        return value
+
+
     def create(self, validated_data):
         category_id = validated_data.pop('category')
         category = Category.objects.get(category_id=category_id)
