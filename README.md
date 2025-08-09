@@ -183,6 +183,12 @@ GET /api/orders/{order_id}/
 ```http
 PATCH /api/orders/<order_id>status/
 ```
+Request:
+```json
+{
+  "status": "cancelled"
+}
+```
 
 ---
 
