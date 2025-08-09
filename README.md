@@ -1,4 +1,4 @@
-# E-Commerce Backend
+# E-commerce Backend
 
 This project is a Django REST Framework-based backend for an e-commerce platform, featuring product management, cart, and order handling with authentication and role-based access.
 
