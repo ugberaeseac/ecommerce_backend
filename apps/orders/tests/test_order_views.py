@@ -12,7 +12,7 @@ User = get_user_model()
 
 class OrderViewTests(APITestCase):
     def setUp(self):
-        # Users (username + email)
+        # Users 
         self.user = User.objects.create_user(
             username="order_user", email="order_user@example.com", password="pass123"
         )
