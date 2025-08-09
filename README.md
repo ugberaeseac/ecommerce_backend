@@ -163,17 +163,31 @@ Request:
 }
 ```
 
----
+**Checkout Cart**
+```http
+POST /api/cart/checkout/
+```
 
 ### Orders
 **List My Orders**
 ```http
-GET /api/orders/
+GET /api/orders/my-orders/
 ```
 
 **Retrieve Order**
 ```http
 GET /api/orders/{order_id}/
+```
+
+**Edit Order Status** *(Admin only)*
+```http
+PATCH /api/orders/<order_id>status/
+```
+Request:
+```json
+{
+  "status": "cancelled"
+}
 ```
 
 ---
