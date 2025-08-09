@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 #SECRET_KEY = 'django-insecure-09-!fs(91%u8vy+dsw&5^573dyeft-r#$)2n@oi9b*c*+m-(+b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
 
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'apps.users.apps.UsersConfig',
     'apps.products.apps.ProductsConfig',
+    'apps.orders.apps.OrdersConfig',
     'apps.auths.apps.AuthsConfig',
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
