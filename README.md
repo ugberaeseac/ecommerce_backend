@@ -49,11 +49,12 @@ cd ecommerce_backend
 
 # Create virtual environment
 python -m venv venv
-source venv/bin/activate  # Linux/Mac
-venv\Scripts\activate   # Windows
+source venv/bin/activate  
+
 
 # Install dependencies
 pip install -r requirements.txt
+
 
 # Create .env file and configure environment variables
 touch .env
@@ -178,9 +179,9 @@ GET /api/orders/{order_id}/
 ---
 
 ## API Documentation
-- **Swagger UI**: [http://localhost:8000/swagger/](http://localhost:8000/swagger/)
-- **ReDoc**: [http://localhost:8000/redoc/](http://localhost:8000/redoc/)
-- **Postman Collection**: `postman_collection.json` available in project root.
+- **Swagger UI**: [https://ecommerce-backend-ga7o.onrender.com/api/schema/swagger-ui/](https://ecommerce-backend-ga7o.onrender.com/api/schema/swagger-ui/)
+- **ReDoc**: [https://ecommerce-backend-ga7o.onrender.com/api/schema/redoc/](https://ecommerce-backend-ga7o.onrender.com/api/schema/redoc/)
+- **Postman Collection**: [postman](postman)
 
 ---
 
