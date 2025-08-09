@@ -49,6 +49,8 @@ class UserTests(APITestCase):
         response = self.client.post(self.user_list_url, data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
+        
+
     def test_user_can_access_me_endpoint(self):
         self.client.force_authenticate(user=self.normal_user)
         response = self.client.get(self.user_me_url)

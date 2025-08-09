@@ -11,4 +11,7 @@ urlpatterns = [
     path('categories/', views.CategoryListCreateAPIView.as_view(), name='category-list'),
     path('categories/<slug:slug>/', views.CategoryDetailAPIView.as_view(), name='category-detail'),
     path('categories/<slug:slug>/products/', views.CategoryProductListAPIView.as_view(), name='category-product-list'),
+
+    path('cart/', include('apps.orders.cart_urls')),
+    path('orders/', include('apps.orders.urls')),
 ]
