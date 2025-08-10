@@ -57,18 +57,7 @@ pip install -r requirements.txt
 
 
 # Create .env file and configure environment variables
-touch .env
-
-DJANGO_SECRET_KEY="<your secret key>"
-
-DB_HOST="<your database host>"
-DB_USER="<your database user>"
-DB_PASS="<your database password>"
-DB_NAME="<your database name>"
-DB_PORT="<your database port>"
-
-ALLOWED_HOSTS="Your allowed hosts seperated by whitespace" # "127.0.0.1 localhost"
-
+cp .env.example .env
 
 # Apply migrations
 python manage.py migrate
